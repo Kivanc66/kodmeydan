@@ -1,0 +1,23 @@
+@model kodmeydan.Models.ApplicationUser;
+
+@{
+    ViewData["Title"] = "Profil";
+}   
+
+<div class="card-client">
+    <div class="user-picture">
+        <img src="~/images/pp.png" alt="User Picture" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;"
+        
+        
+        
+        
+        
+         />
+    </div>
+    <p class="name-client" style="color: var(--text);"> @Model.FullName</p>
+    <p class="email-client" style="color: var(--text-dim);"> @Model.Email</p>
+     <span style="color: var(--bg   );">KodMeydan Üyesi</span>
+        
+    </p>
+    
+</div>

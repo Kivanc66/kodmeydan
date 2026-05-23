@@ -1,0 +1,74 @@
+@model kodmeydan.Models.Project
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="detail-wrap">
+
+    <div class="detail-header">
+        <h1 class="detail-title">@Model.Name</h1>
+        <div class="detail-meta">
+            ⚙️ @Model.CreatedAt.ToString("dd.MM.yyyy") &nbsp;·&nbsp; @Model.User?.FullName
+        </div>
+    </div>
+
+    <p class="detail-body" style="margin-bottom: 24px;">@Model.Description</p>
+
+    <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-icon">☠</span>
+        <div class="divider-line"></div>
+    </div>
+
+    <div class="detail-body">
+        <p>@Model.Content</p>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.Code))
+    {
+        <div style="margin-top: 32px; margin-bottom: 32px; border: 1px solid rgba(200,146,42,0.3); border-radius: 4px; overflow: hidden;">
+            <div style="background: #1a1a2e; padding: 10px 16px; border-bottom: 1px solid rgba(200,146,42,0.2); display: flex; align-items: center; gap: 8px;">
+                <span style="width: 12px; height: 12px; border-radius: 50%; background: #e81123; display: inline-block;"></span>
+                <span style="width: 12px; height: 12px; border-radius: 50%; background: #c8922a; display: inline-block;"></span>
+                <span style="width: 12px; height: 12px; border-radius: 50%; background: #22c55e; display: inline-block;"></span>
+                <span style="font-family: monospace; font-size: 12px; color: #a89070; margin-left: 8px;">kod</span>
+            </div>
+            <pre style="margin: 0;"><code>@Model.Code</code></pre>
+        </div>
+    }
+
+    <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-icon">☠</span>
+        <div class="divider-line"></div>
+    </div>
+
+    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        @if (!string.IsNullOrEmpty(Model.GitHubUrl))
+        {
+            <a href="@Model.GitHubUrl" target="_blank" class="btn-outline">GitHub</a>
+        }
+        @if (!string.IsNullOrEmpty(Model.LiveDemoUrl))
+        {
+            <a href="@Model.LiveDemoUrl" target="_blank" class="btn-outline">Canlı Demo</a>
+        }
+        @if (User?.Identity?.IsAuthenticated == true && User.Identity.Name == Model.User?.UserName)
+        {
+            <a asp-controller="Project" asp-action="Edit" asp-route-id="@Model.Id" class="btn-outline">Düzenle</a>
+            <a asp-controller="Project" asp-action="Delete" asp-route-id="@Model.Id" class="btn-outline">Sil</a>
+        }
+        <a asp-controller="Report" asp-action="Create" asp-route-projectId="@Model.Id" class="btn-outline">Raporla</a>
+        
+         
+        
+        
+    </div>
+
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+}

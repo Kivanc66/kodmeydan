@@ -1,0 +1,44 @@
+@model IEnumerable<kodmeydan.Models.Article>
+
+@{
+    ViewData["Title"] = "Makalelerim";
+}
+
+
+<div class="page-header">
+    <h1 class="page-title"><span>Makalelerim</span></h1>
+    <a asp-action="Create" class="btn-primary">Yeni Makale</a>
+</div>
+
+<div class="search-wrap">
+    <input type="text" id="search" class="search-input" placeholder="Başlık veya etiket ara..." oninput="searchCards()" />
+    <span class="search-icon">🔍</span>
+</div>
+
+
+<div class="card-grid">
+    @foreach (var article in Model)
+    {
+        <div class="card" data-title="@article.Title @article.Ticket">
+            <div class="card-tag">📜 @article.CreatedAt.ToString("dd.MM.yyyy")</div>
+            <a asp-action="Detail" asp-route-id="@article.Id" class="card-title">
+                @article.Title
+            </a>
+            <p class="card-body">
+                @(article.Content?.Length > 120
+                    ? article.Content.Substring(0, 120) + "..."
+                    : article.Content)
+            </p>
+            <div class="card-meta">@article.User?.FullName</div>
+        </div>
+    }
+</div>
+<script>
+    function searchCards() {
+        const query = document.getElementById('search').value.toLowerCase();
+        document.querySelectorAll('.card').forEach(card => {
+            const title = card.dataset.title.toLowerCase();
+            card.style.display = title.includes(query) ? 'block' : 'none';
+        });
+    }
+</script>

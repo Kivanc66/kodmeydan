@@ -1,0 +1,51 @@
+@model kodmeydan.Models.ProjectViewModel
+
+@{
+    ViewData["Title"] = "Proje Oluştur";
+}
+
+<div class="form-wrap">
+    <h2 class="form-title">⚙️ Proje Oluştur</h2>
+
+    <form asp-action="Create" method="post">
+        <div class="form-group">
+            <label>Proje Adı</label>
+            <input asp-for="Name" placeholder="Projenin adı..." />
+            <span asp-validation-for="Name" class="form-error"></span>
+        </div>
+        <div class="form-group">
+            <label>Etiket</label>
+            <input asp-for="Ticket" placeholder="css, python, unity..." />
+            <span asp-validation-for="Ticket" class="form-error"></span>
+        </div>
+        <div class="form-group">
+            <label>Kısa Tanım</label>
+            <input asp-for="Description" placeholder="Tek cümlelik tanım..." />
+            <span asp-validation-for="Description" class="form-error"></span>
+        </div>
+        <div class="form-group">
+            <label>Açıklama</label>
+            <textarea asp-for="Content" placeholder="Projeyi detaylıca anlat..."></textarea>
+            <span asp-validation-for="Content" class="form-error"></span>
+        </div>
+        <div class="form-group">
+            <label>Kod</label>
+            <textarea asp-for="Code" placeholder="Kod parçacığı..."></textarea>
+            <span asp-validation-for="Code" class="form-error"></span>
+        </div>
+        <div class="form-group">
+            <label>GitHub URL (Yok İse Boş Bırakın)</label>
+            <input asp-for="GitHubUrl" placeholder="https://github.com/..." />
+            <span asp-validation-for="GitHubUrl" class="form-error"></span>
+        </div>
+        <div class="form-group">
+            <label>Canlı Demo URL (Yok İse Boş Bırakın)</label>
+            <input asp-for="LiveDemoUrl" placeholder="https://..." />
+            <span asp-validation-for="LiveDemoUrl" class="form-error"></span>
+        </div>
+
+        <div asp-validation-summary="All" class="form-error"></div>
+
+        <button type="submit" class="btn-primary">Oluştur</button>
+    </form>
+</div>

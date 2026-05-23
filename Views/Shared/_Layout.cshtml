@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] — KodMeydan</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a asp-controller="Home" asp-action="Index" class="navbar-logo">
+           
+        </a>
+
+        <div class="navbar-links">
+            <a asp-controller="Home" asp-action="Index" class="nav-link">Ana Sayfa</a>
+            <a asp-controller="Article" asp-action="Index" class="nav-link">Makaleler</a>
+            <a asp-controller="Project" asp-action="Index" class="nav-link">Projeler</a>
+        </div>
+    </nav>
+    @if (TempData["Success"] != null)
+    {
+     <div class="success-msg">
+        @TempData["Success"]
+     </div>
+    }      
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        @RenderBody()
+
+        <footer class="footer">
+            <p class="footer-text">BY KIVANÇ SALMAN</p>
+        </footer>
+    </div>
+
+    <!-- SAĞ ALT — Senin profil alanın -->
+    <div class="cs2-printstream-ui">
+     <div class="sidebar">
+
+        @if (User?.Identity?.IsAuthenticated == true)
+{
+    <a asp-controller="Profile" asp-action="Index" class="vtab">
+        Profil
+        <span class="debris"></span>
+        <span class="debris"></span>
+    </a>
+
+    <form asp-controller="Account" asp-action="Logout" method="post" style="margin: 0;">
+        <button type="submit" class="vtab" style="width: 100%; text-align: left; font-family: 'IM Fell English', serif; cursor: pointer;">
+            Çıkış
+            <span class="debris"></span>
+        </button>
+    </form>
+
+    <a asp-controller="Article" asp-action="MyArticles" class="vtab">
+        Makalelerim
+        <span class="debris"></span>
+    </a>
+    <a asp-controller="Project" asp-action="MyProjects" class="vtab">
+        Projelerim
+        <span class="debris"></span>
+    </a>
+}
+else
+{
+    <a asp-controller="Account" asp-action="Login" class="vtab">
+        Giriş
+        <span class="debris"></span>
+        <span class="debris"></span>
+    </a>
+    <a asp-controller="Account" asp-action="Register" class="vtab">
+        Kayıt
+        <span class="debris"></span>
+    </a>
+}
+        
+        
+     </div>
+</div>
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

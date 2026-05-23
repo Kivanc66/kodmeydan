@@ -1,0 +1,39 @@
+@model kodmeydan.Models.Article
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="detail-wrap">
+
+    <div class="detail-header">
+        <h1 class="detail-title">@Model.Title</h1>
+        <div class="detail-meta">
+            📜 @Model.CreatedAt.ToString("dd.MM.yyyy") &nbsp;·&nbsp; @Model.User?.FullName
+        </div>
+    </div>
+
+    <div class="detail-body">
+        <p>@Model.Content</p>
+    </div>
+
+    <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-icon">☠</span>
+        <div class="divider-line"></div>
+    </div>
+
+    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        @if (User?.Identity?.IsAuthenticated == true && User.Identity.Name == Model.User?.UserName)
+        {
+            <a asp-controller="Article" asp-action="Edit" asp-route-id="@Model.Id" class="btn-outline">Düzenle</a>
+            <a asp-controller="Article" asp-action="Delete" asp-route-id="@Model.Id" class="btn-outline">Sil</a>
+        }
+        <a asp-controller="Report" asp-action="Create" asp-route-articleId="@Model.Id" class="btn-outline">Raporla</a>
+       @if (!string.IsNullOrEmpty(Model.Link))
+{
+    <a href="@Model.Link" target="_blank" class="btn-outline">Kaynağa Git</a>
+}
+    </div>
+
+</div>

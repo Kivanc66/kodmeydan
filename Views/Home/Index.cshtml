@@ -1,0 +1,79 @@
+@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<!-- HERO -->
+<section class="hero">
+
+    <!-- Arka plan fotoğraf/video için — dosyayı wwwroot/images/ veya wwwroot/videos/ klasörüne koy -->
+    <div class="hero-bg" ">
+        <img src="~/images/piratesship.jpg" alt="" /> 
+        @* Video:    <video autoplay muted loop playsinline><source src="~/videos/hero.mp4" type="video/mp4"></video> *@
+    </div>
+
+    
+    <h1 class="hero-title" >Kod<span>Meydan</span></h1>
+    <p class="hero-subtitle"> Korsanların Kodu, Özgürlüğün Meydanı</p>
+    <p class="hero-desc">
+        İnternet özgürlüktür. Bilgi paylaşıldıkça büyür, kod yazıldıkça güçlenir.
+        Projelerini dünyayla paylaş, makalelerinle iz bırak,
+        topluluğun bir parçası ol.
+    </p>
+    <div class="hero-cta">
+        <a href="#section-grid" class="btn-primary">Keşfet</a>
+        <a asp-controller="Account" asp-action="Register" class="btn-outline">Katıl</a>
+    </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="divider reveal">
+    <div class="divider-line"></div>
+    <span class="divider-icon">☠</span>
+    <div class="divider-line"></div>
+</div>
+
+<!-- 3 KART -->
+<div class="section-grid reveal" id="section-grid">
+    
+    <div class="section-card">
+      
+        
+        <div class="section-num">01</div>
+        <div class="section-tag">Özgürlük</div>
+        <div class="section-title">İnternet Özgürdür,<br>Kod Özgürdür</div>
+        <div class="section-body">
+            Korsanlar kurallara değil, özgürlüğe inandı. Biz de öyle düşünüyoruz.
+            Bilgi saklandığında değil, paylaşıldığında güçlenir.
+            Burada hiçbir fikir küçük, hiçbir proje önemsiz değildir.
+        </div>
+    </div>
+    <div class="section-card">
+        <div class="section-num">02</div>
+        <div class="section-tag">Paylaşım</div>
+        <div class="section-title">Paylaş,<br>Büyüt</div>
+        <div class="section-body">
+            Bir satır kod paylaşmak, birinin saatlerce uğraşmasını engelleyebilir.
+            Yazdığın makale, dünyanın öbür ucundaki birine ilham verebilir.
+            Gerçek güç bilgiyi dağıtmakta yatar.
+        </div>
+    </div>
+    <div class="section-card">
+        <div class="section-num">03</div>
+        <div class="section-tag">Topluluk</div>
+        <div class="section-title">Birlikte<br>Daha Güçlü</div>
+        <div class="section-body">
+            Yalnız yazılan kod sessiz kalır, paylaşılınca anlam kazanır.
+            KodMeydan'da herkes hem öğrenci hem öğretmendir.
+            Birlikte daha hızlı, birlikte daha güçlü.
+        </div>
+    </div>
+</div>
+
+<!-- MANIFESTO -->
+<div class="manifesto reveal">
+    <p class="manifesto-text">
+        <em>Yaz.</em> &nbsp;·&nbsp; <em>Paylaş.</em> &nbsp;·&nbsp; <em>İz Bırak.</em><br><br>
+        Korsanlar denizi kimseye bırakmadı.<br>
+        Biz de kodu kimseye bırakmayacağız.
+    </p>
+</div>

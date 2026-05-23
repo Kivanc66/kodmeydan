@@ -1,0 +1,41 @@
+@model IEnumerable<kodmeydan.Models.Project>
+
+@{
+    ViewData["Title"] = "Projeler";
+}
+
+<div class="page-header">
+    <h1 class="page-title"><span>Projeler</span></h1>
+    <a asp-action="Create" class="btn-primary">Yeni Proje</a>
+</div>
+<div class="search-wrap">
+    <input type="text" id="search" class="search-input" placeholder="Başlık veya etiket ara..." oninput="searchCards()" />
+    <span class="search-icon">🔍</span>
+</div>
+
+<div class="card-grid">
+    @foreach (var project in Model)
+    {
+        <div class="card" data-title="@project.Name @project.Ticket">
+            <div class="card-tag">⚙️ @project.CreatedAt.ToString("dd.MM.yyyy")</div>
+            <a asp-action="Detail" asp-route-id="@project.Id" class="card-title">
+                @project.Name
+            </a>
+            <p class="card-body">
+                @(project.Description?.Length > 120
+                    ? project.Description.Substring(0, 120) + "..."
+                    : project.Description)
+            </p>
+            <div class="card-meta">@project.User?.FullName</div>
+        </div>
+    }
+</div>
+<script>
+    function searchCards() {
+        const query = document.getElementById('search').value.toLowerCase();
+        document.querySelectorAll('.card').forEach(card => {
+            const title = card.dataset.title.toLowerCase();
+            card.style.display = title.includes(query) ? 'block' : 'none';
+        });
+    }
+</script>
